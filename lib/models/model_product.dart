@@ -40,8 +40,10 @@ class ProductModel {
     "description": description,
     "category": category,
     "image": image,
-    "rating": rating.toJson(),
+    //"rating": rating.toJson(),
+    "rating": json.encode(rating),
   };
+
 }
 
 class Rating {
