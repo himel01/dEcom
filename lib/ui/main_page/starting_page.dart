@@ -13,7 +13,7 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => FirstPageProvider(context),
+      create: (context) => FirstPageProvider(),
       child: Consumer<FirstPageProvider>(
         builder: (context, provider, _) {
           return Scaffold(

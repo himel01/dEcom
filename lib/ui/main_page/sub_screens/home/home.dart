@@ -1,3 +1,4 @@
+import 'package:demo_ecom/services/route_service.dart';
 import 'package:demo_ecom/ui/main_page/sub_screens/home/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,16 +27,28 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: h * 0.08,
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: w * 0.05),
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "All Products",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: w * 0.07,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: w * 0.05),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "All Products",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: w * 0.07,
+                        ),
+                      ),
                     ),
-                  ),
+                    IconButton(
+                      onPressed: () {
+                        provider
+                            .sortProducts(); // sorted from lowest price to highest price
+                      },
+                      icon: const Icon(Icons.sort),
+                    ),
+                  ],
                 ),
                 provider.products.isNotEmpty
                     ? Expanded(
@@ -51,11 +64,11 @@ class _HomeState extends State<Home> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: InkWell(
                                   onTap: () {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(builder: (ctx) {
-                                                  return Details(
-                                                      productModel: provider.products[index]);
-                                                }));
+                                    RouteService.navigateScreen(
+                                        context,
+                                        Details(
+                                            productModel:
+                                                provider.products[index]));
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -120,7 +133,7 @@ class _HomeState extends State<Home> {
                       )
                     : Container(
                         margin: EdgeInsets.only(top: h * 0.4),
-                        child: CircularProgressIndicator(),
+                        child: const CircularProgressIndicator(),
                       ),
               ],
             ),

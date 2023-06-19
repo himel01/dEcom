@@ -33,7 +33,6 @@ class DatabaseService {
   }
 
   static Future<void> insertProduct(ProductModel product) async {
-    print("inserting");
     final db = await database;
      await db.insert(
       'Products',

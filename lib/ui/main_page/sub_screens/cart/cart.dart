@@ -20,7 +20,7 @@ class _CartState extends State<Cart> {
         builder: (context, provider, _) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text("Shopping Cart"),
+              title: const Text("Shopping Cart"),backgroundColor: Colors.cyan[300],
             ),
             body: provider.products.isEmpty
                 ? const Center(
@@ -148,10 +148,6 @@ class _CartState extends State<Cart> {
                           content: Text("Payment in process! Meanwhile browse other products."),
                         ),
                       );
-                      // Navigator.pushAndRemoveUntil(context,
-                      //     MaterialPageRoute(builder: (ctx) {
-                      //       return const ECommerceHome();
-                      //     }), (route) => false);
                     },
                     child: Container(
                       height: h * 0.05,

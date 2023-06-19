@@ -1,4 +1,5 @@
 import 'package:demo_ecom/models/model_product.dart';
+import 'package:demo_ecom/services/route_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,9 +38,7 @@ class _DetailsState extends State<Details> {
               actions: [
                 IconButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (ctx) {
-                      return const Cart();
-                    }));
+                    RouteService.navigateScreen(context,const Cart());
                   },
                   icon: const Icon(
                     Icons.shopping_cart_checkout_outlined,
@@ -111,11 +110,8 @@ class _DetailsState extends State<Details> {
                                   itemCount: provider.sameProducts.length,
                                   itemBuilder: (context, index) => InkWell(
                                     onTap: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (ctx) {
-                                            return Details(
-                                                productModel: provider.sameProducts[index]);
-                                          }));
+                                      RouteService.navigateScreen(context, Details(
+                                          productModel: provider.sameProducts[index]));
                                     },
                                     child: Container(
                                       margin: const EdgeInsets.only(right: 6),
@@ -169,6 +165,11 @@ class _DetailsState extends State<Details> {
                     child: InkWell(
                       onTap: () {
                         provider.addToCart(widget.productModel);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Added Successfully!"),
+                          ),
+                        );
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -185,9 +186,7 @@ class _DetailsState extends State<Details> {
                     child: InkWell(
                       onTap: () {
                         provider.addToCart(widget.productModel);
-                        Navigator.push(context, MaterialPageRoute(builder: (ctx) {
-                         return const Cart();
-                       }));
+                        RouteService.navigateScreen(context,const Cart());
                       },
                       child: Container(
                         alignment: Alignment.center,

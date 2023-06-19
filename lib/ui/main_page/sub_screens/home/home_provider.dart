@@ -21,10 +21,14 @@ class HomeProvider extends ChangeNotifier{
   Future<void> saveProducts() async {
     if(products.isNotEmpty){
       for (var element in products) {
-        print(element.title);
         await DatabaseService.insertProduct(element);
       }
     }
+  }
+
+  sortProducts(){
+    products.sort((a, b) => a.price.compareTo(b.price));
+    notifyListeners();
   }
 
   Future<void> retrieve() async {
@@ -35,6 +39,7 @@ class HomeProvider extends ChangeNotifier{
         notifyListeners();
       }
     }
-
   }
+
+
 }
