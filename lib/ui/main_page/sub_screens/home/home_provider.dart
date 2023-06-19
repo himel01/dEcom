@@ -28,11 +28,13 @@ class HomeProvider extends ChangeNotifier{
   }
 
   Future<void> retrieve() async {
-   var list= await DatabaseService.products();
-   if(list.isNotEmpty){
-     for(var e in list){
-       print(e.title);
-     }
-   }
+    if(products.isEmpty){
+      var list= await DatabaseService.products();
+      if(list.isNotEmpty){
+        products=list;
+        notifyListeners();
+      }
+    }
+
   }
 }

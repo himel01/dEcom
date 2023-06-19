@@ -13,15 +13,21 @@ class ApiService {
   //final String user = "https://fakestoreapi.com/users/";
 
   Future<List<ProductModel>> fetchProducts() async {
-    final response = await http.get(
-      Uri.parse(productsApi),
-    );
-    if (response.statusCode == 200) {
+    var response;
+    try{
+       response = await http.get(
+        Uri.parse(productsApi),
+      );
+
+    }catch(e){
+      print(e);
+    }
+    if (response!=null && response.statusCode == 200) {
       return productModelFromJson(response.body);
     } else {
       return [];
-      //throw Exception('Failed to load products');
     }
+
   }
 
   Future<List<ProductModel>> fetchProductsCategory(String category) async {

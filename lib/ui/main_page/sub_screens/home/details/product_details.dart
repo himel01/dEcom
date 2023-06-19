@@ -168,7 +168,7 @@ class _DetailsState extends State<Details> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        //addToCart(widget.productModel);
+                        provider.addToCart(widget.productModel);
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -184,10 +184,10 @@ class _DetailsState extends State<Details> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        //addToCart(widget.productModel);
-                        //Navigator.push(context, MaterialPageRoute(builder: (ctx) {
-                        //  return const CartPage();
-                       // }));
+                        provider.addToCart(widget.productModel);
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+                         return const Cart();
+                       }));
                       },
                       child: Container(
                         alignment: Alignment.center,

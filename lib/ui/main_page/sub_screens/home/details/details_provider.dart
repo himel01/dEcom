@@ -1,3 +1,4 @@
+import 'package:demo_ecom/services/database_service.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../models/model_product.dart';
@@ -14,5 +15,8 @@ class DetailsProvider extends ChangeNotifier {
     sameProducts = await ApiService().fetchProductsCategory(c);
 
     notifyListeners();
+  }
+  addToCart(ProductModel productModel) async {
+   await DatabaseService.insertCart(productModel);
   }
 }

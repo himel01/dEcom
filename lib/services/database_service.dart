@@ -17,7 +17,7 @@ class DatabaseService {
     // final String image;
     // final Rating rating;
 
-    database =await openDatabase(
+    database = await openDatabase(
       join(path, 'product_database.db'),
       onCreate: (database, version) async {
         await database.execute(
@@ -33,6 +33,7 @@ class DatabaseService {
   }
 
   static Future<void> insertProduct(ProductModel product) async {
+    print("inserting");
     final db = await database;
      await db.insert(
       'Products',

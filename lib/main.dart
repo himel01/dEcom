@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  DatabaseService.initializeDB();
+  await DatabaseService.initializeDB();
   runApp(const MyApp());
 }
 
